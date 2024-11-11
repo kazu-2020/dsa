@@ -1,0 +1,30 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - echo 'Hello, AtCoder!'
+
+  login:
+    desc: 'AtCoder にログインする'
+    cmds:
+      - acc login
+  join:
+    desc: 'AtCorder の任意のコンテスtに参加する ex: task join abc123'
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - acc --choice all --template go-template new {{.CLI_ARGS }}
+    vars:
+      context_id:
+
+  test:
+    desc: 'AtCoder の任意のコンテストのテストを実行する'
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - oj t -c 'go run main.go' -d tests
+
+  submit:
+    desc: 'AtCoder の任意のコンテストの提出を行う'
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - acc submit

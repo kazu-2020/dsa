@@ -1,0 +1,18 @@
+services:
+  atcoder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    volumes:
+      - type: bind
+        source: ./go-template
+        target: /root/.config/atcoder-cli-nodejs/go-template
+      - type: bind
+        source: ./Taskfile.yml
+        target: /workspace/Taskfile.yml
+      - type: bind
+        source: ./contests
+        target: /workspace/contests
