@@ -15,10 +15,13 @@ func main() {
 	)
 	fmt.Scan(&n, &q)
 	sc := bufio.NewScanner(os.Stdin)
+	// 1 <= n <= 10^5 のため、バッファサイズを大きくしておく
+	sc.Buffer(make([]byte, 1000000), 1000000)
 	// 日数読み込み
 	sc.Scan()
 	line := strings.Fields(sc.Text())
 	A := make([]int, n + 1)
+	A[0] = 0
 	for i := 1; i <= n; i++ {
 		A[i], _ = strconv.Atoi(line[i - 1])
 	}
