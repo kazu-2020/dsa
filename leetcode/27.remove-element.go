@@ -13,13 +13,12 @@ package leetcode
 func removeElement(nums []int, val int) int {
 	k := 0
 
-	for _, v := range nums {
-		if v != val {
-			nums[k] = v
+	for _, n := range nums {
+		if n != val {
+			nums[k] = n
 			k++
 		}
 	}
-
 
 	return k
 }
