@@ -10,12 +10,22 @@ tasks:
     cmds:
       - acc login
   join:
-    desc: 'AtCorder の任意のコンテスtに参加する ex: task join abc123'
+    desc: 'AtCorder の任意のコンテストに参加する ex: task join -- abc123'
     dir: '{{.USER_WORKING_DIR}}'
     cmds:
       - acc --choice all --template go-template new {{.CLI_ARGS }}
-    vars:
-      context_id:
+
+  add:
+    desc: 'AtCoder の任意のコンテストの問題を追加する'
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - acc --template go-template add
+
+  solve:
+    desc: 'AtCoder の任意のコンテストの問題を解く ex: task solve -- abc123_a'
+    dir : '{{.USER_WORKING_DIR}}'
+    cmds:
+      - acc --template go-template new {{.CLI_ARGS }}
 
   test:
     desc: 'AtCoder の任意のコンテストのテストを実行する'
