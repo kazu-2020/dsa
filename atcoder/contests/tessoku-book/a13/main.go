@@ -16,35 +16,61 @@ func main() {
 	sc.Scan()
 	fmt.Sscanf(sc.Text(), "%d %d", &N, &K)
 
-	A := make([]int, N+1)
+	A := make([]int, N)
 	sc.Scan()
-	line := strings.Fields(sc.Text())
-	for i := 1; i <= N; i++ {
-		A[i], _ = strconv.Atoi(line[i-1])
+	for i, v := range strings.Fields(sc.Text()) {
+		A[i], _ = strconv.Atoi(v)
 	}
 
-	R := make([]int, N+1)
-	for i := 1; i <= N; i++ {
-		if i == 1 {
-			R[i] = 1
-		} else {
-			R[i] = R[i-1]
+	ans, r := 0, 0
+	for l := 0; l < N; l++ {
+		for r < N && A[r]-A[l] <= K {
+			r++
 		}
 
-		for {
-			if R[i] < N && A[R[i]+1]-A[i] <= K {
-				R[i] += 1
-				continue
-			}
-
-			break
-		}
-	}
-
-	ans := 0
-	for i := 1; i <= N; i++ {
-		ans += R[i] - i
+		ans += r - l - 1
 	}
 
 	fmt.Println(ans)
 }
+
+// func main() {
+// 	sc := bufio.NewScanner(os.Stdin)
+// 	sc.Buffer(make([]byte, 10000000), 10000000)
+
+// 	var N, K int
+// 	sc.Scan()
+// 	fmt.Sscanf(sc.Text(), "%d %d", &N, &K)
+
+// 	A := make([]int, N+1)
+// 	sc.Scan()
+// 	line := strings.Fields(sc.Text())
+// 	for i := 1; i <= N; i++ {
+// 		A[i], _ = strconv.Atoi(line[i-1])
+// 	}
+
+// 	R := make([]int, N+1)
+// 	for i := 1; i <= N; i++ {
+// 		if i == 1 {
+// 			R[i] = 1
+// 		} else {
+// 			R[i] = R[i-1]
+// 		}
+
+// 		for {
+// 			if R[i] < N && A[R[i]+1]-A[i] <= K {
+// 				R[i] += 1
+// 				continue
+// 			}
+
+// 			break
+// 		}
+// 	}
+
+// 	ans := 0
+// 	for i := 1; i <= N; i++ {
+// 		ans += R[i] - i
+// 	}
+
+// 	fmt.Println(ans)
+// }
